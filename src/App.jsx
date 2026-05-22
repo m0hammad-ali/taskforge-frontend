@@ -63,7 +63,7 @@ export default function App() {
 
       if (!response.ok) throw new Error("Server rejected wipe operation.");
 
-      setTasks(prev => prev.filter(t => t.id !== id));
+      setTasks(prev => prev.filter(t => t._id !== id));
       triggerToast("Task deleted on server database simulation.");
     } catch (err) {
       console.error(err);
@@ -111,10 +111,10 @@ export default function App() {
 
       <ul style={{ listStyleType: 'none', padding: 0 }}>
         {filteredTasks.map(task => (
-          <li key={task.id} style={{ background: '#f8fafc', padding: '15px', marginBottom: '10px', borderRadius: '6px', borderLeft: '4px solid #6366f1' }}>
+          <li key={task._id} style={{ background: '#f8fafc', padding: '15px', marginBottom: '10px', borderRadius: '6px', borderLeft: '4px solid #6366f1' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span>{task.text}</span>
-              <button onClick={() => handleDeleteTask(task.id)} style={{ background: '#ef4444', color: '#fff', border: 'none', padding: '6px 10px', borderRadius: '4px', fontSize: '11px', cursor: 'pointer', fontWeight: 'bold' }}>Wipe</button>
+              <button onClick={() => handleDeleteTask(task._id)} style={{ background: '#ef4444', color: '#fff', border: 'none', padding: '6px 10px', borderRadius: '4px', fontSize: '11px', cursor: 'pointer', fontWeight: 'bold' }}>Wipe</button>
             </div>
           </li>
         ))}
